@@ -9,7 +9,10 @@ from src.data_loader import (
 @patch("pandas.read_excel")
 def test_load_dataset(mock_read_excel):
     # Create mock data so the test doesn't look for a physical file
-    mock_df = pd.DataFrame({"record_type": ["event"], "title": ["Test Event"]})
+    mock_df = pd.DataFrame({
+        "record_type": ["event"],
+        "title": ["Test Event"],
+    })
     mock_read_excel.return_value = mock_df
 
     df = load_unified()
@@ -21,8 +24,11 @@ def test_load_dataset(mock_read_excel):
 
 @patch("pandas.read_excel")
 def test_reference_codes(mock_read_excel):
-    # Simulate a populated reference codes dataframe
-    mock_df = pd.DataFrame({"code":, "meaning": ["Alpha", "Beta"]})
+    # Mock reference codes
+    mock_df = pd.DataFrame({
+        "code": ["A", "B"],
+        "meaning": ["Alpha", "Beta"],
+    })
     mock_read_excel.return_value = mock_df
 
     ref = load_reference_codes()
