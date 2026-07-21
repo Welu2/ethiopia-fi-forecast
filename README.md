@@ -18,6 +18,7 @@ ethiopia-fi-forecast/
 ├── notebooks/
 │   ├── task1_data_exploration.ipynb
 │   └── task2_eda.ipynb
+|   └── task3_event_impact_modeling.ipynb
 ├── src/
 │   ├── data_loader.py
 │   ├── explorer.py
@@ -292,16 +293,155 @@ main
 └── future tasks
 ```
 
-Each task is developed in its own branch, reviewed through a Pull Request, and merged into `main`.
+# Task 3 — Event Impact Modeling
+
+## Objective
+
+Model how events such as policies, product launches, regulatory changes, and infrastructure investments affect financial inclusion indicators in Ethiopia.
+
+The goal is to transform event–indicator impact relationships into a model that estimates how financial inclusion indicators change after major events.
 
 ---
 
-# Future Work
+## Work Completed
 
-The next phases of the project will focus on
+### Impact Data Integration
 
-- Feature engineering
-- Forecasting models
-- Impact modeling
-- Dashboard development
-- Financial inclusion prediction
+- Loaded the `Impact_sheet` from the enriched dataset.
+- Joined impact links with event records using:
+
+```
+parent_id → record_id
+```
+
+- Created an event-impact dataset containing:
+
+  - Event identifier
+  - Affected indicator
+  - Impact direction
+  - Impact magnitude
+  - Lag period
+  - Evidence basis
+  - Comparable country evidence
+  - Confidence level
+
+---
+
+### Event–Indicator Association Matrix
+
+Created an association matrix showing:
+
+- Rows:
+  - Events
+
+- Columns:
+  - Financial inclusion indicators
+
+- Values:
+  - Estimated impact of each event on each indicator
+
+Indicators modeled include:
+
+- ACC_OWNERSHIP
+- ACC_MM_ACCOUNT
+- USG_TELEBIRR_USERS
+- USG_P2P_COUNT
+- USG_DIGITAL_PAYMENT
+- Infrastructure and affordability indicators
+
+---
+
+### Impact Modeling Method
+
+The model represents each event impact using:
+
+- **Impact direction**
+  - Positive (+)
+  - Negative (-)
+
+- **Impact magnitude**
+  - Low
+  - Medium
+  - High
+
+- **Lag period**
+  - Delay before the impact begins
+
+A gradual adoption function was used to model how effects build over time instead of assuming immediate changes.
+
+When multiple events affect the same indicator, their estimated impacts are combined.
+
+---
+
+### Validation Against Historical Data
+
+The model was tested using the Telebirr launch.
+
+Event:
+
+```
+Telebirr launch (2021)
+```
+
+Observed mobile money account growth:
+
+```
+2021: 4.7%
+2024: 9.45%
+
+Observed change:
++4.75 percentage points
+```
+
+Model prediction:
+
+```
+Predicted impact:
++2.00 percentage points
+```
+
+Validation result:
+
+```
+Prediction error:
+2.75 percentage points
+```
+
+The model correctly predicted a positive impact but underestimated the magnitude of the observed change.
+
+---
+
+### Refinement of Estimates
+
+The difference between predicted and observed impact may be explained by additional factors not fully captured in the model, including:
+
+- Agent network expansion
+- Smartphone adoption
+- Regulatory changes
+- Digital payment ecosystem growth
+- Other related infrastructure investments
+
+Future refinements will adjust impact estimates as more historical evidence becomes available.
+
+---
+
+## Methodology Assumptions
+
+The model assumes:
+
+- Event impacts are additive.
+- Effects begin after the specified lag period.
+- Adoption grows gradually over time.
+- Impact magnitude categories represent relative effect strength.
+- Comparable country evidence can be used when Ethiopian historical evidence is limited.
+
+---
+
+## Limitations
+
+- Historical observations are limited for some indicators.
+- Multiple events may influence the same indicator at the same time.
+- Comparable country evidence may not fully represent Ethiopia's context.
+- The model does not currently capture complex causal relationships.
+
+
