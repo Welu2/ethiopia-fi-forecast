@@ -444,4 +444,192 @@ The model assumes:
 - Comparable country evidence may not fully represent Ethiopia's context.
 - The model does not currently capture complex causal relationships.
 
+# Task 4 — Forecasting Access and Usage
+
+## Objective
+
+Forecast Ethiopia's financial inclusion indicators for 2025-2027, focusing on:
+
+- Account Ownership Rate (Access)
+- Digital Payment Usage
+
+The objective was to estimate future financial inclusion trends using historical observations and scenario-based modeling.
+
+---
+
+## Forecasting Approach
+
+Due to limited historical observations from Findex surveys, a simple forecasting approach was selected.
+
+The models included:
+
+### Baseline Scenario
+
+Assumes historical trends continue without major changes.
+
+Method:
+
+- Linear trend regression
+- Historical indicator values as input
+- Forecast horizon: 2025-2027
+
+---
+
+### Event-Augmented Scenario
+
+Incorporates expected impacts from major financial inclusion events:
+
+- Telebirr expansion
+- M-PESA launch
+- EthioPay payment infrastructure
+- Digital financial service policies
+- Infrastructure improvements
+
+Event effects were applied based on Task 3 impact estimates.
+
+---
+
+### Scenario Analysis
+
+Three scenarios were generated:
+
+| Scenario | Description |
+|---|---|
+| Optimistic | Higher adoption and stronger event impacts |
+| Baseline | Continuation of historical trends |
+| Pessimistic | Slower adoption and weaker impacts |
+
+---
+
+## Forecast Outputs
+
+Generated:
+
+ task4_forecast_table.csv
+
+The forecast table contains:
+
+- Year
+- Baseline forecast
+- Optimistic forecast
+- Pessimistic forecast
+
+---
+
+## Uncertainty and Limitations
+
+The forecast has several limitations:
+
+- Financial inclusion survey observations are sparse.
+- Event impacts are estimated from available evidence.
+- External factors such as economic conditions and regulation changes are uncertain.
+
+Confidence intervals and scenario ranges are used to represent uncertainty.
+
+---
+
+## Interpretation
+
+The model suggests continued improvement in financial inclusion.
+
+Major potential drivers include:
+
+- Mobile money adoption
+- Digital payment infrastructure
+- Interoperability improvements
+- Digital identity systems
+
+The largest uncertainty comes from adoption speed and actual usage behavior.
+
+---
+
+# Task 5 — Dashboard Development
+
+## Objective
+
+Develop an interactive dashboard that allows stakeholders to explore:
+
+- Financial inclusion trends
+- Event impacts
+- Forecast results
+- Future inclusion scenarios
+
+The dashboard was developed using Streamlit.
+
+---
+
+## Dashboard Structure
+
+Application:
+
+dashboard/
+└── app.py
+
+---
+
+## Dashboard Pages
+
+## 1. Overview Page
+
+Displays:
+
+- Latest account ownership rate
+- Number of indicators
+- Dataset size
+- Indicator coverage visualization
+
+---
+
+## 2. Trends Page
+
+Allows users to:
+
+- Select financial inclusion indicators
+- Explore historical trends
+- View interactive time-series charts
+- Download indicator data
+
+---
+
+## 3. Forecasts Page
+
+Provides:
+
+- 2025-2027 forecasts
+- Scenario selection:
+    - Baseline
+    - Optimistic
+    - Pessimistic
+
+Includes interactive forecast visualization.
+
+---
+
+## 4. Inclusion Projection Page
+
+Shows:
+
+- Progress toward 60% financial inclusion target
+- Scenario comparison
+- Projected account ownership
+
+---
+
+## Interactive Visualizations
+
+The dashboard includes:
+
+1. Indicator distribution chart
+2. Time-series trend plots
+3. Forecast scenario plots
+4. Inclusion projection comparison chart
+
+---
+
+## Running the Dashboard
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
 
